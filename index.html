@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Project - WebCraft</title>
+    <link rel="shortcut icon" href="./src/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3402026_f6g6pakiv7t.css">
+    <link rel="shortcut icon" href="./src/images/icon.svg" type="image/x-icon">
+</head>
+
+<body style="margin: 0;width: 100vw;height: 100vh;overflow: hidden;">
+    <div id="WebCraft_navBar">
+        <div id="left_part">
+            <img src="./src/images/icon.svg">
+            <button class="nav_menu" id="menu_btn">
+                <span class="wc_icon menu"></span>
+            </button>
+            <div id="menu_layout"></div>
+            <ul id="menu_content">
+                <li>
+                    <svg t="1746274206847" class="icon" viewBox="0 0 1344 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2295" width="200" height="200">
+                        <path
+                            d="M1086.656 415.424C1072.896 203.904 925.792 0 656 0c-32.928 0-65.408 3.2-96.576 9.504a16 16 0 0 0 6.368 31.392A452.992 452.992 0 0 1 656 32C930.816 32 1056 247.648 1056 448v48a16 16 0 0 0 32 0V448l-0.032-0.512C1185.984 455.936 1312 541.312 1312 720c0 152.544-112.448 272-256 272H288c-127.232 0-256-93.44-256-272C32 588.992 112.128 448 288 448h48a16 16 0 0 0 0-32H288v-64c0-119.264 73.568-193.344 192-193.344 107.648 0 192 84.928 192 193.344v415.776l-133.12-123.52a15.968 15.968 0 1 0-21.76 23.424l144.512 134.048c9.568 9.536 18.016 14.24 26.464 14.24 8.352 0 16.64-4.64 25.856-13.856l144.928-134.464a15.936 15.936 0 0 0 0.832-22.592 15.904 15.904 0 0 0-22.592-0.832L704 767.776V352c0-126.368-98.4-225.344-224-225.344-136.064 0-224 88.448-224 225.344v65.632c-168.16 16.256-256 160.096-256 302.368C0 867.36 100.928 1024 288 1024h768c161.504 0 288-133.536 288-304 0-201.728-145.824-296.896-257.344-304.576z"
+                            fill="#2c2c2c" p-id="2296"></path>
+                    </svg>
+                    保存工程文件
+                </li>
+                <li>
+                    <svg t="1746274163196" class="icon" viewBox="0 0 1344 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2148" width="200" height="200">
+                        <path
+                            d="M1086.656 415.616C1072.992 204.032 925.856 0 656 0 409.184 0 218.848 183.456 208.768 428.288 73.728 470.304 0 614.816 0 720 0 881.952 134.592 1024 288 1024h208a16 16 0 0 0 0-32H288c-136.384 0-256-127.104-256-272C32 622.368 117.568 448 288 448h48a16 16 0 0 0 0-32H288c-16.288 0-31.68 1.824-46.688 4.448C253.856 228.768 399.552 32 656 32 930.816 32 1056 247.648 1056 448v48a16 16 0 0 0 32 0V448v-0.288c96.608 10.592 224 114.272 224 272.288 0 122.432-118.112 272-256 272h-240c-103.616 0-144-40.384-144-144V409.056l130.496 130.24a16 16 0 1 0 22.656-22.592l-142.752-142.464c-19.008-18.944-33.76-18.944-52.736 0l-142.752 142.464a16 16 0 0 0 22.624 22.624L640 409.056V848c0 121.728 54.272 176 176 176H1056c155.104 0 288-167.168 288-304 0-165.344-135.136-294.656-257.344-304.384z"
+                            fill="#2c2c2c" p-id="2149"></path>
+                    </svg>
+                    从工程文件加载
+                </li>
+                <li onclick="download()">
+                    <svg t="1746274111713" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="1861" width="200" height="200">
+                        <path
+                            d="M56.88888853 293.36462187a45.51111147 45.51111147 0 0 1 22.75555627-39.41262187L147.91111147 214.53937813 420.97777813 56.88888853l68.26666667-39.41262186a45.51111147 45.51111147 0 0 1 45.5111104 0L603.02222187 56.88888853l273.02115626 157.6504896v-0.04551146l68.26666667 39.41262186a45.51111147 45.51111147 0 0 1 22.7555552 39.41262294V329.9555552H967.11111147v400.67982293a45.51111147 45.51111147 0 0 1-22.75555627 39.41262187l-15.47377707 8.92017813-394.12622293 227.5555552a45.51111147 45.51111147 0 0 1-45.5111104 0L420.97777813 967.11111147l-325.85955626-188.14293334-15.47377707-8.92017813a45.51111147 45.51111147 0 0 1-22.75555627-39.41262187V293.36462187z m91.02222294 60.9848896v349.98044373l318.57777706 183.95591147v-350.0259552L147.91111147 354.34951147z m728.17777706 0l-318.57777706 183.86488853v350.07146667l318.57777706-183.95591147v-349.98044373zM316.57528853 222.27626667L208.896 284.4444448 512 459.43466667l107.67928853-62.16817814-303.104-174.99022186zM512 109.40871147L407.59751147 169.7564448l303.104 174.99022187L815.104 284.4444448 512 109.45422187z"
+                            fill="#2c2c2c" p-id="1862"></path>
+                    </svg>
+                    生成代码并导出
+                </li>
+            </ul>
+        </div>
+        <div id="center_part">
+            <input id="project_name"
+                oninput="window.localStorage.setItem('project_name', event.target.value); document.getElementsByTagName('title')[0].innerHTML = window.localStorage.getItem('project_name') + ' - WebCraft'"
+                value="New Project" placeholder="Input your project name here...">
+        </div>
+        <div id="right_part">
+            <div class="tab">
+                <input type="radio" value="draggable_div" oninput="changeScene(event)" checked name="lang" id="html">
+                <label for="html">HTML</label>
+            </div>
+            <div class="tab">
+                <input type="radio" value="blockly_css" name="lang" id="css" oninput="changeScene(event)">
+                <label for="css">CSS</label>
+            </div>
+            <div class="tab">
+                <input type="radio" value="blockly_js" name="lang" id="js" oninput="changeScene(event)">
+                <label for="js">JavaScript</label>
+            </div>
+            <button class="nav_btn preview_btn" id="preview_nav_btn">
+                <span class="wc_icon preview"></span>
+                预览
+            </button>
+        </div>
+    </div>
+    <div id="draggable_div"></div>
+    <div id="blockly_css" style="width: 100vw; height: 90vh;"></div>
+    <div id="blockly_js" style="width: 100vw; height: 90vh;"></div>
+    <xml id="toolbox">
+        <item type="title"></item>
+        <item type="p"></item>
+        <item type="button"></item>
+        <item type="input"></item>
+    </xml>
+    <div class="WebCraft_PopWindow">
+
+    </div>
+    <xml id='js_toolbox'>
+        <toolbox_label text="基础" css-class="toolboxLabel"></toolbox_label>
+        <category name="逻辑" colour="210" css-icon="customIcon bi bi-gear-fill">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_null"></block>
+            <block type="logic_ternary"></block>
+        </category>
+        <category name="循环" colour="120" css-icon="customIcon bi bi-arrow-clockwise">
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+                <value name="BY">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_forEach"></block>
+            <block type="controls_flow_statements"></block>
+        </category>
+        <category name="数学" colour="230" css-icon="customIcon bi bi-calculator-fill">
+            <block type="math_number"></block>
+            <block type="math_arithmetic">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_single">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">9</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_trig">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">45</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constant"></block>
+            <block type="math_number_property">
+                <value name="NUMBER_TO_CHECK">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_round">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">3.1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo">
+                <value name="DIVIDEND">
+                    <shadow type="math_number">
+                        <field name="NUM">64</field>
+                    </shadow>
+                </value>
+                <value name="DIVISOR">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constrain">
+                <value name="VALUE">
+                    <shadow type="math_number">
+                        <field name="NUM">50</field>
+                    </shadow>
+                </value>
+                <value name="LOW">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="HIGH">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_int">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_float"></block>
+        </category>
+        <category name="文本" css-icon="customIcon bi bi-fonts" colour="160">
+            <block type="text"></block>
+            <block type="text_join"></block>
+            <block type="text_append">
+                <value name="TEXT">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="text_length">
+                <value name="VALUE">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_isEmpty">
+                <value name="VALUE">
+                    <shadow type="text">
+                        <field name="TEXT"></field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+                <value name="FIND">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_charAt">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_getSubstring">
+                <value name="STRING">
+                    <block type="variables_get">
+                        <field name="VAR">text</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_changeCase">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_trim">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_prompt_ext">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="列表" css-icon="customIcon bi bi-list-ul" colour="260">
+            <block type="lists_create_with">
+                <mutation items="0"></mutation>
+            </block>
+            <block type="lists_create_with"></block>
+            <block type="lists_repeat">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getIndex">
+                <value name="VALUE">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_setIndex">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_getSublist">
+                <value name="LIST">
+                    <block type="variables_get">
+                        <field name="VAR">list</field>
+                    </block>
+                </value>
+            </block>
+            <block type="lists_split">
+                <value name="DELIM">
+                    <shadow type="text">
+                        <field name="TEXT">,</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_sort"></block>
+        </category>
+        <category name="变量" colour="330" custom="VARIABLE" css-icon="customIcon wc_icon variable"></category>
+        <category name="函数" colour="290" custom="PROCEDURE" css-icon="customIcon wc_icon function"></category>
+        <sep></sep>
+        <toolbox_label text="WebCraft API" css-class="toolboxLabel"></toolbox_label>
+        <toolbox_label text="文档API" css-class="toolboxLabel second_title bi bi-code"></toolbox_label>
+        <category name="HTML API" css-icon="customIcon bi bi-filetype-html" colour="90">
+            <label text="基本"></label>
+            <block type="element"></block>
+            <block type="create_element"></block>
+            <label text="事件"></label>
+            <block type="addEventListener">
+                <value name="target">
+                    <shadow type="element"></shadow>
+                </value>
+            </block>
+            <block type="event_preventDefault"></block>
+            <block type="event_type"></block>
+            <block type="event_target"></block>
+            <block type="event_cancelable"></block>
+            <block type="event_defaultPrevented"></block>
+            <block type="event_isTrusted"></block>
+            <label text="操作"></label>
+            <block type="add_to_"></block>
+            <block type="assignment">
+                <value name='source'>
+                    <shadow type="attribute">
+                        <value name="target">
+                            <shadow type="element"></shadow>
+                        </value>
+                    </shadow>
+                </value>
+                <value name="target">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <label text="数据"></label>
+            <block type="attribute">
+                <value name="target">
+                    <shadow type="element"></shadow>
+                </value>
+            </block>
+            <block type="style">
+                <value name="target">
+                    <shadow type="element"></shadow>
+                </value>
+            </block>
+            <block type="inner">
+                <value name="target">
+                    <shadow type="element"></shadow>
+                </value>
+            </block>
+        </category>
+        <toolbox_label text="浏览器API" css-class="toolboxLabel second_title bi bi-browser-chrome"></toolbox_label>
+        <category name="窗口API" colour="120" css-icon="customIcon bi bi-window">
+            <label text="弹窗"></label>
+            <block type="alert">
+                <value name="message">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="confirm">
+                <value name="message">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <label text="操作"></label>
+
+        </category>
+    </xml>
+    <script src="./src/Draggable/draggable_uncompressed.js"></script>
+    <script src="./src/scripts/custom_attr_types.js"></script>
+    <script src="./src/jszip/jszip.min.js"></script>
+    <script src="./src/scripts/items.js"></script>
+    <script src="./src/scripts/generator.js"></script>
+    <script src="./src/blockly/blockly_compressed.js"></script>
+    <script src="./src/blockly/blocks_compressed.js"></script>
+    <script src="./src/blockly/javascript_compressed.js"></script>
+    <script src="./src/blockly/msg/zh-hans.js"></script>
+    <script src="./src/scripts/js_blocks.js"></script>
+    <script src="./src/scripts/index.js"></script>
+    <script>
+        document.getElementById('menu_layout').addEventListener("click", event => {
+            document.getElementById('menu_content').style.display = 'none';
+            document.getElementById('menu_layout').style.display = 'none';
+        })
+        document.getElementById("menu_btn").addEventListener("click", event => {
+            document.getElementById('menu_layout').style.display = 'block';
+            document.getElementById('menu_content').style.display = 'flex';
+        })
+    </script>
+</body>
+
+</html>

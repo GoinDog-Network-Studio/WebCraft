@@ -1,0 +1,315 @@
+/* Makes our label white. */
+.blocklyTreeLabel {
+    color: white;
+}
+
+/* Adds padding around the group of categories and separators. */
+.blocklyToolboxContents {
+    padding: 0.5em;
+}
+
+/* Adds space between the categories, rounds the corners and adds space around the label. */
+.blocklyTreeRow {
+    padding: 3px;
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+}
+
+/* Changes color of the icon to white. */
+.customIcon {
+    color: white;
+}
+
+/* Stacks the icon on top of the label. */
+.blocklyTreeRowContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blocklyTreeRow {
+    height: initial;
+}
+
+.toolboxLabel {
+    padding-bottom: 5px;
+    text-align: center;
+}
+.toolboxLabel.second_title {
+    color: grey;
+    font-size: small;
+}
+.toolboxLabel.second_title::before {
+    padding-right: 3px;
+}
+.title_area {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.add_btn {
+    float: right;
+    border: none;
+    background-color: inherit;
+    font-size: 20px;
+}
+
+.sheetsArea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sheetArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    gap: 5px;
+}
+
+.identifySelection {
+    height: 100%;
+    width: 35%;
+}
+
+.valueArea {
+    width: 64%;
+    height: 100%;
+}
+
+.valueElement {
+    height: 100%;
+    width: 100%;
+}
+
+.attrValGroup {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+}
+
+.WebCraft_PopWindow {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+}
+
+.WebCraft_PopWindow .background {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.WebCraft_PopWindow .window_area {
+    width: 60%;
+    padding: 20px;
+    height: 60%;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.WebCraft_PopWindow .window_area .center_area {
+    width: 100%;
+    height: 70%;
+    --targetWidth: 45%;
+    --targetHeight: 40%;
+    --targetTop: 18%;
+    --targetLeft: calc(calc(100% - var(--targetWidth)) / 2);
+    --changingWidth: 250px;
+    --changingHeight: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.WebCraft_PopWindow .window_area .center_area .content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.WebCraft_PopWindow .window_area .center_area .content .target {
+    position: absolute;
+    border: 2px solid black;
+    left: var(--targetLeft);
+    top: var(--targetTop);
+    width: var(--targetWidth);
+    height: var(--targetHeight);
+}
+
+.WebCraft_PopWindow .window_area .center_area .content .changing_area {
+    width: var(--changingWidth);
+    height: var(--changingHeight);
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+
+.changing_area#leftTop {
+    left: calc(var(--targetLeft) - var(--changingWidth));
+    top: calc(var(--targetTop) - var(--changingHeight));
+}
+
+.changing_area#leftBottom {
+    left: calc(var(--targetLeft) - var(--changingWidth));
+    top: calc(var(--targetTop) + var(--targetHeight));
+}
+
+.changing_area#rightTop {
+    left: calc(var(--targetLeft) + var(--targetWidth));
+    top: calc(var(--targetTop) - var(--changingHeight));
+}
+
+.changing_area#rightBottom {
+    left: calc(var(--targetLeft) + var(--targetWidth));
+    top: calc(var(--targetTop) + var(--targetHeight));
+}
+
+.WebCraft_PopWindow .window_area #tips {
+    text-align: center;
+    color: grey;
+}
+
+#WebCraft_navBar {
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vh;
+    justify-content: space-between;
+}
+
+#WebCraft_navBar #left_part {
+    display: flex;
+    flex-direction: row;
+}
+
+#WebCraft_navBar #left_part .nav_menu {
+    border: none;
+    width: 40px;
+    margin-left: 20px;
+    background-color: inherit;
+    transition: all 0.2s;
+}
+
+
+#WebCraft_navBar #left_part .nav_menu:hover {
+    background-color: lightgray;
+}
+
+#WebCraft_navBar #left_part .nav_menu .wc_icon {
+    font-size: 2em;
+}
+
+#WebCraft_navBar #left_part #menu_layout {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 71;
+    display: none;
+}
+
+#WebCraft_navBar #left_part #menu_content {
+    position: absolute;
+    top: 10vh;
+    left: 100px;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 15px;
+    margin: 0;
+    z-index: 72;
+}
+
+#WebCraft_navBar #left_part #menu_content li {
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+#WebCraft_navBar #left_part #menu_content li:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+#WebCraft_navBar #left_part #menu_content :first-child {
+    border-radius: 15px 15px 0px 0px;
+}
+
+#WebCraft_navBar #left_part #menu_content :last-child {
+    border-radius: 0px 0px 15px 15px;
+}
+
+#WebCraft_navBar #left_part #menu_content li .icon {
+    width: 20px;
+    height: 20px;
+}
+
+#WebCraft_navBar #center_part {
+    display: flex;
+    flex-direction: row;
+    min-width: 45%;
+}
+
+#WebCraft_navBar #center_part input {
+    border: none;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+#WebCraft_navBar #center_part input:focus-visible {
+    outline: none;
+}
+
+#WebCraft_navBar #right_part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding-right: 10px;
+}
+
+#WebCraft_navBar #right_part .tab {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px dashed gray;
+}
+#WebCraft_navBar #right_part .nav_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: none;
+}
+#WebCraft_navBar #right_part .nav_btn .wc_icon {
+    height: 100%;
+    width: auto;
+    padding-right: 5px;
+    font-size: 1.2em;
+}
+#WebCraft_navBar #right_part .nav_btn.preview_btn {
+    color: rgb(28, 120, 0);
+    background-color: rgb(200, 255, 200);
+    border: 2px solid rgb(28, 120, 0);
+}
