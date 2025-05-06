@@ -464,7 +464,7 @@ function defineJSBlocks(workspace) {
         }
     };
 
-    javascriptGenerator.forBlock['location_info'] = function () {
+    javascript.javascriptGenerator.forBlock['location_info'] = function () {
         const dropdown_info = block.getFieldValue('info');
 
         // TODO: Assemble javascript into the code variable.
@@ -473,7 +473,7 @@ function defineJSBlocks(workspace) {
         return [code, Order.NONE];
     }
 
-    javascriptGenerator.forBlock['location_assign'] = function () {
+    javascript.javascriptGenerator.forBlock['location_assign'] = function () {
         // TODO: change Order.ATOMIC to the correct operator precedence strength
         const value_url = generator.valueToCode(block, 'url', Order.ATOMIC);
 
