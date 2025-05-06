@@ -436,6 +436,52 @@ function defineJSBlocks(workspace) {
         return code;
     }
 
+    const location_info = {
+        init: function () {
+            this.appendValueInput('url')
+                .setCheck('String')
+                .appendField('使当前网页跳转到');
+            this.setInputsInline(true)
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setTooltip('触发窗口加载并显示指定的 URL 的内容');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Location/assign');
+            this.setColour(120);
+        }
+    }
+
+    const location_assign = {
+        init: function () {
+            this.appendValueInput('url')
+                .setCheck('String')
+                .appendField('使当前网页跳转到');
+            this.setInputsInline(true)
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setTooltip('触发窗口加载并显示指定的 URL 的内容');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Location/assign');
+            this.setColour(120);
+        }
+    };
+
+    javascriptGenerator.forBlock['location_info'] = function () {
+        const dropdown_info = block.getFieldValue('info');
+
+        // TODO: Assemble javascript into the code variable.
+        const code = `window.location.${dropdown_info}`;
+        // TODO: Change Order.NONE to the correct operator precedence strength
+        return [code, Order.NONE];
+    }
+
+    javascriptGenerator.forBlock['location_assign'] = function () {
+        // TODO: change Order.ATOMIC to the correct operator precedence strength
+        const value_url = generator.valueToCode(block, 'url', Order.ATOMIC);
+
+        // TODO: Assemble javascript into the code variable.
+        const code = `window.location.assign(${value_url})`;
+        return code;
+    }
+
     Blockly.common.defineBlocks(
         {
             add_to_: add_to_,
@@ -455,7 +501,9 @@ function defineJSBlocks(workspace) {
             event_target: event_target,
             event_preventDefault: event_preventDefault,
             alert: alert,
-            confirm: confirm
+            confirm: confirm,
+            location_info: location_info,
+            location_assign: location_assign
         }
     )
 }
