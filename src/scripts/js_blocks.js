@@ -407,7 +407,7 @@ function defineJSBlocks(workspace) {
 
     const confirm = {
         init: function () {
-            this.appendDummyInput('NAME')
+            this.appendDummyInput()
                 .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
                 .appendField('浏览器弹出确认窗口');
             this.appendValueInput('message')
@@ -438,21 +438,26 @@ function defineJSBlocks(workspace) {
 
     const location_info = {
         init: function () {
-            this.appendValueInput('url')
-                .setCheck('String')
-                .appendField('使当前网页跳转到');
-            this.setInputsInline(true)
-            this.setPreviousStatement(true, null);
-            this.setNextStatement(true, null);
-            this.setTooltip('触发窗口加载并显示指定的 URL 的内容');
-            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Location/assign');
+            this.appendDummyInput()
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
+                .appendField('获取当前页面的')
+                .appendField(new Blockly.FieldDropdown([
+                    ['网址', 'href'],
+                    ['传输协议', 'protocol'],
+                    ['URL参数', 'search'],
+                    ['URL标识符', 'hash']
+                ]), 'info');
+            this.setOutput(true, 'String');
+            this.setTooltip('返回有关文档当前位置的信息');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/location');
             this.setColour(120);
         }
-    }
+    };
 
     const location_assign = {
         init: function () {
             this.appendValueInput('url')
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
                 .setCheck('String')
                 .appendField('使当前网页跳转到');
             this.setInputsInline(true)
@@ -464,23 +469,113 @@ function defineJSBlocks(workspace) {
         }
     };
 
-    javascript.javascriptGenerator.forBlock['location_info'] = function () {
-        const dropdown_info = block.getFieldValue('info');
+    const location_reload = {
+        init: function () {
+            this.appendDummyInput()
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
+                .appendField('重新加载页面');
+            this.appendDummyInput()
+                .appendField(new Blockly.FieldCheckbox('TRUE'), 'forceGet')
+                .appendField('同时清除缓存');
+            this.setInputsInline(false)
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setTooltip('重载当前 URL，就像刷新按钮一样');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Location/reload');
+            this.setColour(120);
+        }
+    };
 
-        // TODO: Assemble javascript into the code variable.
+    const localStorage_getItem = {
+        init: function () {
+            this.appendValueInput('keyName')
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
+                .setCheck('String')
+                .appendField('页面数据');
+            this.setInputsInline(true)
+            this.setOutput(true, 'String');
+            this.setTooltip('当传递一个键名时，将返回该键的值');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/getItem');
+            this.setColour(120);
+        }
+    };
+    const localStorage_setItem = {
+        init: function () {
+            this.appendValueInput('keyName')
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
+                .setCheck('String')
+                .appendField('设置');
+            this.appendValueInput('keyValue')
+                .appendField('为');
+            this.setInputsInline(true)
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null)
+            this.setTooltip('当传递一个键名时，将返回该键的值');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/setItem');
+            this.setColour(120);
+        }
+    };
+
+    const localStorage_removeItem = {
+        init: function () {
+            this.appendValueInput('keyName')
+                .setCheck('String')
+                .appendField('删除');
+            this.setInputsInline(true)
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setTooltip('当传递一个数据名名时，将从页面数据库中删除此数据');
+            this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/removeItem');
+            this.setColour(120);
+        }
+    };
+
+    javascript.javascriptGenerator.forBlock['location_info'] = function (block, generator) {
+        const dropdown_info = block.getFieldValue('info');
         const code = `window.location.${dropdown_info}`;
-        // TODO: Change Order.NONE to the correct operator precedence strength
         return [code, Order.NONE];
     }
 
-    javascript.javascriptGenerator.forBlock['location_assign'] = function () {
-        // TODO: change Order.ATOMIC to the correct operator precedence strength
+    javascript.javascriptGenerator.forBlock['location_assign'] = function (block, generator) {
         const value_url = generator.valueToCode(block, 'url', Order.ATOMIC);
-
-        // TODO: Assemble javascript into the code variable.
         const code = `window.location.assign(${value_url})`;
         return code;
     }
+    javascript.javascriptGenerator.forBlock['location_reload'] = function (block, generator) {
+        const checkbox_forceget = block.getFieldValue('forceGet');
+
+        const code = `window.location.reload(${checkbox_forceget})`;
+        return code;
+    }
+    javascript.javascriptGenerator.forBlock['localStorage_getItem'] = function (block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.NONE);
+
+        const code = `window.localStorage.getItem("${value_keyname}")`;
+        return [code, javascript.Order.NONE];
+    }
+    javascript.javascriptGenerator.forBlock['localStorage_setItem'] = function (block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.NONE);
+
+        const value_keyvalue = generator.valueToCode(block, 'keyValue', javascript.Order.NONE);
+
+        var code;
+        if (block.getInputTargetBlock("keyName").type == 'localStorage_getItem') {
+            code = `window.localStorage.setItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', javascript.Order.NONE)}, ${value_keyvalue})`;
+        } else {
+            code = `window.localStorage.setItem(${value_keyname}, ${value_keyvalue})`;
+        }
+        return [code, javascript.Order.NONE];
+    }
+    javascript.javascriptGenerator.forBlock['localStorage_removeItem'] = function(block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.ATOMIC);
+        var code;
+        if (block.getInputTargetBlock("keyName").type == 'localStorage_getItem') {
+            code = `window.localStorage.removeItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', javascript.Order.NONE)})`;
+        } else {
+            code = `window.localStorage.removeItem(${value_keyname})`;
+        }
+        return code;
+      }
 
     Blockly.common.defineBlocks(
         {
@@ -503,7 +598,11 @@ function defineJSBlocks(workspace) {
             alert: alert,
             confirm: confirm,
             location_info: location_info,
-            location_assign: location_assign
+            location_assign: location_assign,
+            location_reload: location_reload,
+            localStorage_getItem: localStorage_getItem,
+            localStorage_setItem: localStorage_setItem,
+            localStorage_removeItem, localStorage_removeItem
         }
     )
 }

@@ -408,9 +408,41 @@
                     <shadow type="text"></shadow>
                 </value>
             </block>
-            <label text="URL"></label>
+            <label text="页面"></label>
             <block type="location_info"></block>
-            <block type="location_assign"></block>
+            <block type="location_assign">
+                <value name="url">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="location_reload"></block>
+            <label text="数据存储"></label>
+            <block type="localStorage_getItem">
+                <value name="keyName">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="localStorage_setItem">
+                <value name="keyName">
+                    <shadow type="localStorage_getItem">
+                        <value name="keyName">
+                            <shadow type="text"></shadow>
+                        </value>
+                    </shadow>
+                </value>
+                <value name="keyValue">
+                    <shadow type="text"></shadow>
+                </value>
+            </block>
+            <block type="localStorage_removeItem">
+                <value name="keyName">
+                    <shadow type="localStorage_getItem">
+                        <value name="keyName">
+                            <shadow type="text"></shadow>
+                        </value>
+                    </shadow>
+                </value>
+            </block>
         </category>
     </xml>
     <script src="./src/Draggable/draggable_uncompressed.js"></script>
