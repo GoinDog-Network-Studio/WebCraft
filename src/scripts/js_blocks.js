@@ -519,6 +519,7 @@ function defineJSBlocks(workspace) {
     const localStorage_removeItem = {
         init: function () {
             this.appendValueInput('keyName')
+                .appendField(new Blockly.FieldImage('../src/images/window.svg', 20, 20, { alt: '*', flipRtl: 'FALSE' }))
                 .setCheck('String')
                 .appendField('删除');
             this.setInputsInline(true)
@@ -566,7 +567,7 @@ function defineJSBlocks(workspace) {
         }
         return [code, javascript.Order.NONE];
     }
-    javascript.javascriptGenerator.forBlock['localStorage_removeItem'] = function(block, generator) {
+    javascript.javascriptGenerator.forBlock['localStorage_removeItem'] = function (block, generator) {
         const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.ATOMIC);
         var code;
         if (block.getInputTargetBlock("keyName").type == 'localStorage_getItem') {
@@ -575,7 +576,7 @@ function defineJSBlocks(workspace) {
             code = `window.localStorage.removeItem(${value_keyname})`;
         }
         return code;
-      }
+    }
 
     Blockly.common.defineBlocks(
         {
