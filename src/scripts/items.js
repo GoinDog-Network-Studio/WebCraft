@@ -40,6 +40,12 @@ Draggable.Items['title'] = {
             "id": "innerText"
         },
         {
+            "type": "text",
+            'value': "wc_element",
+            "label": "ID",
+            "id": "id"
+        },
+        {
             "type": "stylesheet",
             "label": "样式(CSS)",
             "id": "css",
@@ -57,6 +63,12 @@ Draggable.Items['p'] = {
             "id": "innerText"
         },
         {
+            "type": "text",
+            'value': "wc_element",
+            "label": "ID",
+            "id": "id"
+        },
+        {
             "type": "stylesheet",
             "label": "样式(CSS)",
             "id": "css",
@@ -72,6 +84,12 @@ Draggable.Items['button'] = {
             "value": 'Click Here',
             "label": "文本",
             "id": "innerText"
+        },
+        {
+            "type": "text",
+            'value': "wc_element",
+            "label": "ID",
+            "id": "id"
         },
         {
             "type": "stylesheet",
@@ -95,6 +113,12 @@ Draggable.Items['input'] = {
             "value": 'Hello, Input!',
             "label": "默认值",
             "id": "value"
+        },
+        {
+            "type": "text",
+            'value': "wc_element",
+            "label": "ID",
+            "id": "id"
         },
         {
             "type": "stylesheet",

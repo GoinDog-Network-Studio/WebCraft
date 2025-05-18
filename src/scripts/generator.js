@@ -6,7 +6,7 @@ Draggable.Generator['title'] = (item) => {
         var value = element['value'];
         stylesheet += `${identify}: ${value};`
     })
-    return `<${item.getAttribute("tag")} id="WebCraft_i-${item.id}" style="${stylesheet}">${item.getAttribute("innerText")}</${item.getAttribute("tag")}>`
+    return `<${item.getAttribute("tag")} id="${item.getAttribute("id")}" style="${stylesheet}">${item.getAttribute("innerText")}</${item.getAttribute("tag")}>`
 }
 Draggable.Generator['p'] = (item) => {
     var stylesheet = '';
@@ -15,7 +15,7 @@ Draggable.Generator['p'] = (item) => {
         var value = element['value'];
         stylesheet += `${identify}: ${value};`
     })
-    return `<p id="WebCraft_i-${item.id}" style="${stylesheet}">${item.getAttribute("innerText")}</p>`
+    return `<p id="${item.getAttribute("id")}" style="${stylesheet}">${item.getAttribute("innerText")}</p>`
 }
 Draggable.Generator['button'] = (item) => {
     var stylesheet = '';
@@ -24,7 +24,7 @@ Draggable.Generator['button'] = (item) => {
         var value = element['value'];
         stylesheet += `${identify}: ${value};`
     })
-    return `<button id="WebCraft_i-${item.id}" style="${stylesheet}">${item.getAttribute("innerText")}</button>`
+    return `<button id="${item.getAttribute("id")}" style="${stylesheet}">${item.getAttribute("innerText")}</button>`
 }
 Draggable.Generator['input'] = (item) => {
     var stylesheet = '';
@@ -33,5 +33,5 @@ Draggable.Generator['input'] = (item) => {
         var value = element['value'];
         stylesheet += `${identify}: ${value};`
     })
-    return `<input id="WebCraft_i-${item.id}" type="${item.getAttribute("category")}" style="${stylesheet}" placeholder="${item.getAttribute("placeholder")}" value="${item.getAttribute("value")}"/>`
+    return `<input id="${item.getAttribute("id")}" type="${item.getAttribute("category")}" style="${stylesheet}" placeholder="${item.getAttribute("placeholder")}" value="${item.getAttribute("value")}"/>`
 }

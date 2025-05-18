@@ -56,7 +56,7 @@
                 value="New Project" placeholder="Input your project name here...">
         </div>
         <div id="right_part">
-            <div class="tab">
+            <!-- <div class="tab">
                 <input type="radio" value="draggable_div" oninput="changeScene(event)" checked name="lang" id="html">
                 <label for="html">HTML</label>
             </div>
@@ -67,6 +67,14 @@
             <div class="tab">
                 <input type="radio" value="blockly_js" name="lang" id="js" oninput="changeScene(event)">
                 <label for="js">JavaScript</label>
+            </div> -->
+            <div class="tab">
+                <input type="radio" value="graphical" name="status" id="graphical" oninput="changeScene(event)">
+                <label for="graphical">图形化界面</label>
+            </div>
+            <div class="tab">
+                <input type="radio" value="vscode_editor" name="status" id="textualization" oninput="changeScene(event)">
+                <label for="textualization">代码式编程</label>
             </div>
             <button class="nav_btn preview_btn" id="preview_nav_btn">
                 <span class="wc_icon preview"></span>
@@ -74,9 +82,25 @@
             </button>
         </div>
     </div>
-    <div id="draggable_div"></div>
-    <div id="blockly_css" style="width: 100vw; height: 90vh;"></div>
-    <div id="blockly_js" style="width: 100vw; height: 90vh;"></div>
+    <span id="workspace">
+        <div id="file-preview">
+            <ul id="file-navbar">
+                <li class="bi bi-file-earmark-plus"></li>
+                <li class="bi bi-folder-plus"></li>
+            </ul>
+            <ul id="file_content"></ul>
+        </div>
+        <div id="welcome"
+            style="width: 85vw; height: 90vh;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+            <img src="./src/images/icon.svg" alt="WebCraft icon">
+            <h1 style="color: white;text-shadow: 1px 2px 9px black;">欢迎使用WebCraft</h1>
+            <h3 style="color: white;text-shadow: 1px 2px 6px black;">可视化前端开发工具</h3>
+        </div>
+        <div id="draggable_div"></div>
+        <div id="blockly_css" style="width: 85vw; height: 90vh;"></div>
+        <div id="blockly_js" style="width: 85vw; height: 90vh;"></div>
+        <div id="vscode_editor"></div>
+    </span>
     <xml id="toolbox">
         <item type="title"></item>
         <item type="p"></item>
@@ -445,6 +469,7 @@
             </block>
         </category>
     </xml>
+    <script src="./src/esprima/esprima.js"></script>
     <script src="./src/Draggable/draggable_uncompressed.js"></script>
     <script src="./src/scripts/custom_attr_types.js"></script>
     <script src="./src/jszip/jszip.min.js"></script>
@@ -456,6 +481,8 @@
     <script src="./src/blockly/msg/zh-hans.js"></script>
     <script src="./src/scripts/js_blocks.js"></script>
     <script src="./src/scripts/index.js"></script>
+    <link rel="stylesheet" href="./src/monaco/min/vs/editor/editor.main.css">
+    <script src="./src/requirejs/require.js" data-main="scripts/monaco"></script>
     <script>
         document.getElementById('menu_layout').addEventListener("click", event => {
             document.getElementById('menu_content').style.display = 'none';

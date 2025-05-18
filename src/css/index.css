@@ -313,3 +313,46 @@
     background-color: rgb(200, 255, 200);
     border: 2px solid rgb(28, 120, 0);
 }
+span#workspace {
+    display: flex;
+    flex-direction: row;
+}
+#file-preview {
+    width: 15vw;
+    height: 90vh;
+    border: 1px solid black;
+}
+ul#file-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 10px;
+    margin: 5px;
+}
+ul#file-navbar li {
+    list-style: none;
+    font-size: 20px;
+}
+ul#file_content {
+    padding: 10px;
+}
+ul#file_content li {
+    list-style: none;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.1s;
+}
+ul#file_content li:hover {
+    background-color: rgb(234, 234, 234);
+}
+ul#file_content li.selected {
+    background-color: rgb(222, 222, 222);
+}
+#vscode_editor {
+    width: 85vw;
+    height: 90vh;
+    border: 1px solid black;
+}

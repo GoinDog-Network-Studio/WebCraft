@@ -1,25 +1,6 @@
-
 function defineJSBlocks(workspace) {
-    var elements = [
-        ['空', 'empty']
-    ]
-
-    if (workspace.structure.length != 0) {
-        elements = []
-        for (let i = 0; i < workspace.structure.length; i++) {
-            var element_ = workspace.structure[i];
-            if (element_ != null) {
-                var label = element_.label;
-                var id = `WebCraft_i-${i}`
-                elements.push([label, id]);
-            }
-        }
-        if (elements.length == 0) {
-            elements = [
-                ['空', 'empty']
-            ]
-        }
-    }
+    const jsForBlock = Object.create(null);
+    const Order = javascript.Order;
 
     var tag_elements = []
     Object.keys(Draggable.Items).forEach(item => {
@@ -39,10 +20,10 @@ function defineJSBlocks(workspace) {
         init: function () {
             this.appendDummyInput()
                 .appendField(new Blockly.FieldImage("../src/images/filetype-html.svg", 20, 20, { alt: 'HTML API', flipRtl: 'FALSE' }))
-                .appendField("元素")
-                .appendField(new Blockly.FieldDropdown(elements), 'elements');
+                .appendField("元素ID")
+                .appendField(new Blockly.FieldTextInput(), 'elements');
             this.setOutput(true, 'dom_element');
-            this.setTooltip('获取页面上的一个元素');
+            this.setTooltip('根据元素ID获取页面上的一个元素');
             this.setHelpUrl('https://developer.mozilla.org/zh-CN/docs/Web/API/Document/getElementById');
             this.setColour(90);
         }
@@ -319,72 +300,72 @@ function defineJSBlocks(workspace) {
             this.setColour(90);
         }
     };
-    javascript.javascriptGenerator.forBlock['create_element'] = function (block, generator) {
+    jsForBlock['create_element'] = function (block, generator) {
         const tag = block.getFieldValue("tag");
-        return [`document.createElement("${tag}")`, javascript.Order.ATOMIC];
+        return [`document.createElement("${tag}")`, Order.ATOMIC];
     }
 
-    javascript.javascriptGenerator.forBlock['element'] = function (block, generator) {
+    jsForBlock['element'] = function (block, generator) {
         const id = block.getFieldValue("elements");
-        return [`document.getElementById("${id}")`, javascript.Order.ATOMIC];
+        return [`document.getElementById("${id}")`, Order.ATOMIC];
     }
 
-    javascript.javascriptGenerator.forBlock['add_to_'] = function (block, generator) {
+    jsForBlock['add_to_'] = function (block, generator) {
         var value_source = "";
         var split
         for (let i = 0; i < this.elementCount_; i++) {
             i === 0 ? split = "" : split = ", ";
-            value_source += split + generator.valueToCode(block, `source_${i}`, javascript.Order.ATOMIC)
+            value_source += split + generator.valueToCode(block, `source_${i}`, Order.ATOMIC)
         }
 
-        const value_target = generator.valueToCode(block, 'target', javascript.Order.ATOMIC);
+        const value_target = generator.valueToCode(block, 'target', Order.ATOMIC);
 
         const code = `${value_target}.append(${value_source});\n`;
         return code;
     }
 
-    javascript.javascriptGenerator.forBlock['attribute'] = function (block, generator) {
-        return [`${generator.valueToCode(block, 'target', javascript.Order.NONE)}.getAttribute("data-${block.getFieldValue("name")}");\n`, javascript.Order.ATOMIC]
+    jsForBlock['attribute'] = function (block, generator) {
+        return [`${generator.valueToCode(block, 'target', Order.NONE)}.getAttribute("data-${block.getFieldValue("name")}");\n`, Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['style'] = function (block, generator) {
-        var code = `${generator.valueToCode(block, 'target', javascript.Order.ATOMIC)}.style`;
+    jsForBlock['style'] = function (block, generator) {
+        var code = `${generator.valueToCode(block, 'target', Order.ATOMIC)}.style`;
         block.getFieldValue("name") === 'all' ? code += '' : code += `.${block.getFieldValue("name")}`
-        return [code, javascript.Order.ATOMIC]
+        return [code, Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['inner'] = function (block, generator) {
-        return [`${generator.valueToCode(block, 'target', javascript.Order.ATOMIC)}.inner${block.getFieldValue("type")}`, javascript.Order.ATOMIC]
+    jsForBlock['inner'] = function (block, generator) {
+        return [`${generator.valueToCode(block, 'target', Order.ATOMIC)}.inner${block.getFieldValue("type")}`, Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['assignment'] = function (block, generator) {
+    jsForBlock['assignment'] = function (block, generator) {
         var code;
         if (this.getInputTargetBlock("source").type == 'attribute') {
-            code = `${generator.valueToCode(this.getInputTargetBlock("source"), 'target', javascript.Order.NONE)}.setAttribute("data-${block.getFieldValue("name")}", ${generator.valueToCode(block, 'target', javascript.Order.NONE)});\n`
+            code = `${generator.valueToCode(this.getInputTargetBlock("source"), 'target', Order.NONE)}.setAttribute("data-${block.getFieldValue("name")}", ${generator.valueToCode(block, 'target', Order.NONE)});\n`
             block.setHelpUrl("https://developer.mozilla.org/zh-CN/docs/Web/API/Element/setAttribute");
         } else {
-            code = `${generator.valueToCode(block, 'source', javascript.Order.NONE)} = ${generator.valueToCode(block, 'target', javascript.Order.NONE)};\n`;
+            code = `${generator.valueToCode(block, 'source', Order.NONE)} = ${generator.valueToCode(block, 'target', Order.NONE)};\n`;
             block.setHelpUrl("");
         }
         return code;
     }
-    javascript.javascriptGenerator.forBlock['addEventListener'] = function (block, generator) {
-        return `${generator.valueToCode(block, 'target', javascript.Order.NONE)}.on${block.getFieldValue("event_name")} = function(event) {${generator.statementToCode(block, 'event_content', javascript.Order.NONE)}};`;
+    jsForBlock['addEventListener'] = function (block, generator) {
+        return `${generator.valueToCode(block, 'target', Order.NONE)}.on${block.getFieldValue("event_name")} = function(event) {${generator.statementToCode(block, 'event_content', Order.NONE)}};`;
     }
-    javascript.javascriptGenerator.forBlock['event_cancelable'] = function (block, generator) {
-        return ['event.cancelable', javascript.Order.ATOMIC]
+    jsForBlock['event_cancelable'] = function (block, generator) {
+        return ['event.cancelable', Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['event_isTrusted'] = function (block, generator) {
-        return ['event.isTrusted', javascript.Order.ATOMIC]
+    jsForBlock['event_isTrusted'] = function (block, generator) {
+        return ['event.isTrusted', Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['event_defaultPrevented'] = function (block, generator) {
-        return ['event.defaultPrevented', javascript.Order.ATOMIC]
+    jsForBlock['event_defaultPrevented'] = function (block, generator) {
+        return ['event.defaultPrevented', Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['event_type'] = function (block, generator) {
-        return ['event.type', javascript.Order.ATOMIC]
+    jsForBlock['event_type'] = function (block, generator) {
+        return ['event.type', Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['event_target'] = function (block, generator) {
-        return ['event.target', javascript.Order.ATOMIC]
+    jsForBlock['event_target'] = function (block, generator) {
+        return ['event.target', Order.ATOMIC]
     }
-    javascript.javascriptGenerator.forBlock['event_preventDefault'] = function (block, generator) {
-        return ['event.preventDefault()', javascript.Order.ATOMIC]
+    jsForBlock['event_preventDefault'] = function (block, generator) {
+        return ['event.preventDefault()', Order.ATOMIC]
     }
 
 
@@ -422,15 +403,15 @@ function defineJSBlocks(workspace) {
     };
 
 
-    javascript.javascriptGenerator.forBlock['alert'] = function (block, generator) {
-        const value_message = generator.valueToCode(block, 'message', javascript.Order.NONE);
+    jsForBlock['alert'] = function (block, generator) {
+        const value_message = generator.valueToCode(block, 'message', Order.NONE);
 
         const code = `alert(${value_message});\n`;
         return code;
     }
 
-    javascript.javascriptGenerator.forBlock['confirm'] = function (block, generator) {
-        const value_message = generator.valueToCode(block, 'message', javascript.Order.NONE);
+    jsForBlock['confirm'] = function (block, generator) {
+        const value_message = generator.valueToCode(block, 'message', Order.NONE);
 
         const code = `confirm(${value_message});\n`;
         return code;
@@ -531,47 +512,47 @@ function defineJSBlocks(workspace) {
         }
     };
 
-    javascript.javascriptGenerator.forBlock['location_info'] = function (block, generator) {
+    jsForBlock['location_info'] = function (block, generator) {
         const dropdown_info = block.getFieldValue('info');
         const code = `window.location.${dropdown_info}`;
         return [code, Order.NONE];
     }
 
-    javascript.javascriptGenerator.forBlock['location_assign'] = function (block, generator) {
+    jsForBlock['location_assign'] = function (block, generator) {
         const value_url = generator.valueToCode(block, 'url', Order.ATOMIC);
         const code = `window.location.assign(${value_url})`;
         return code;
     }
-    javascript.javascriptGenerator.forBlock['location_reload'] = function (block, generator) {
+    jsForBlock['location_reload'] = function (block, generator) {
         const checkbox_forceget = block.getFieldValue('forceGet');
 
         const code = `window.location.reload(${checkbox_forceget})`;
         return code;
     }
-    javascript.javascriptGenerator.forBlock['localStorage_getItem'] = function (block, generator) {
-        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.NONE);
+    jsForBlock['localStorage_getItem'] = function (block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', Order.NONE);
 
         const code = `window.localStorage.getItem("${value_keyname}")`;
-        return [code, javascript.Order.NONE];
+        return [code, Order.NONE];
     }
-    javascript.javascriptGenerator.forBlock['localStorage_setItem'] = function (block, generator) {
-        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.NONE);
+    jsForBlock['localStorage_setItem'] = function (block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', Order.NONE);
 
-        const value_keyvalue = generator.valueToCode(block, 'keyValue', javascript.Order.NONE);
+        const value_keyvalue = generator.valueToCode(block, 'keyValue', Order.NONE);
 
         var code;
         if (block.getInputTargetBlock("keyName").type == 'localStorage_getItem') {
-            code = `window.localStorage.setItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', javascript.Order.NONE)}, ${value_keyvalue})`;
+            code = `window.localStorage.setItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', Order.NONE)}, ${value_keyvalue})`;
         } else {
             code = `window.localStorage.setItem(${value_keyname}, ${value_keyvalue})`;
         }
-        return [code, javascript.Order.NONE];
+        return [code, Order.NONE];
     }
-    javascript.javascriptGenerator.forBlock['localStorage_removeItem'] = function (block, generator) {
-        const value_keyname = generator.valueToCode(block, 'keyName', javascript.Order.ATOMIC);
+    jsForBlock['localStorage_removeItem'] = function (block, generator) {
+        const value_keyname = generator.valueToCode(block, 'keyName', Order.ATOMIC);
         var code;
         if (block.getInputTargetBlock("keyName").type == 'localStorage_getItem') {
-            code = `window.localStorage.removeItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', javascript.Order.NONE)})`;
+            code = `window.localStorage.removeItem(${generator.valueToCode(block.getInputTargetBlock("keyName"), 'keyName', Order.NONE)})`;
         } else {
             code = `window.localStorage.removeItem(${value_keyname})`;
         }
@@ -603,9 +584,10 @@ function defineJSBlocks(workspace) {
             location_reload: location_reload,
             localStorage_getItem: localStorage_getItem,
             localStorage_setItem: localStorage_setItem,
-            localStorage_removeItem, localStorage_removeItem
+            localStorage_removeItem: localStorage_removeItem
         }
     )
+    Object.assign(javascript.javascriptGenerator.forBlock, jsForBlock)
 }
 
 const add_to_mutator_ = {
