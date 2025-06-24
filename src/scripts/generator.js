@@ -1,5 +1,4 @@
 Draggable.Generator['title'] = (item) => {
-    console.log(item);
     var stylesheet = '';
     item.getAttribute("css").forEach(element => {
         var identify = element['identify'];

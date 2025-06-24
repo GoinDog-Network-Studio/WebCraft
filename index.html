@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="./src/images/icon.svg" type="image/x-icon">
     <link rel="stylesheet" href="./src/css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3402026_f6g6pakiv7t.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3402026_j17gtdhua1n.css">
     <link rel="shortcut icon" href="./src/images/icon.svg" type="image/x-icon">
 </head>
 
@@ -314,6 +314,16 @@
                 </value>
             </block>
         </category>
+        <category name="对象" colour="45" css-icon="customIcon bi bi-braces">
+            <block type="OBJECT_CREATE"></block>
+            <block type="OBJECT_CREATE">
+                <mutation itemCount="3"></mutation>
+            </block>
+            <block type="OBJECT_KEY_AND_VALUE"></block>
+            <block type="OBJECT_KEYS"></block>
+            <block type="OBJECT_GET"></block>
+            <block type="OBJECT_SET"></block>
+        </category>
         <category name="列表" css-icon="customIcon bi bi-list-ul" colour="260">
             <block type="lists_create_with">
                 <mutation items="0"></mutation>
@@ -363,10 +373,9 @@
                     </shadow>
                 </value>
             </block>
-            <block type="lists_sort"></block>
         </category>
         <category name="变量" colour="330" custom="VARIABLE" css-icon="customIcon wc_icon variable"></category>
-        <category name="函数" colour="290" custom="PROCEDURE" css-icon="customIcon wc_icon function"></category>
+        <category name="函数" colour="290" custom="WC_FUNCTION" css-icon="customIcon wc_icon function"></category>
         <sep></sep>
         <toolbox_label text="WebCraft API" css-class="toolboxLabel"></toolbox_label>
         <toolbox_label text="文档API" css-class="toolboxLabel second_title bi bi-code"></toolbox_label>
@@ -468,6 +477,12 @@
                 </value>
             </block>
         </category>
+        <category name="控制台" colour="15" css-icon="customIcon wc_icon console">
+            <block type="CONSOLE_MSG">
+                <mutation msgCount="1"></mutation>
+            </block>
+            <block type="CONSOLE_PRINT_OBJECT_"></block>
+        </category>
     </xml>
     <script src="./src/esprima/esprima.js"></script>
     <script src="./src/Draggable/draggable_uncompressed.js"></script>
@@ -480,6 +495,7 @@
     <script src="./src/blockly/javascript_compressed.js"></script>
     <script src="./src/blockly/msg/zh-hans.js"></script>
     <script src="./src/scripts/js_blocks.js"></script>
+    <script src="./src/saveSvgAsPng/min.js"></script>
     <script src="./src/scripts/index.js"></script>
     <link rel="stylesheet" href="./src/monaco/min/vs/editor/editor.main.css">
     <script src="./src/requirejs/require.js" data-main="scripts/monaco"></script>
